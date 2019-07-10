@@ -1,33 +1,56 @@
 "use strict";
 
-function PokeAPIService(details_url) {
+function PokeAPIService(url) {
   this.baseUrl = "https://pokeapi.co/api/v2/";
-  this.details_url = details_url;
+  this.detailUrl = "https://pokeapi.co/api/v2";
+  this.url = url;
 }
 
 PokeAPIService.prototype.getAllPokemons = async function() {
-  var response = await fetch(`${this.baseUrl}pokemon`);
+  var response = await fetch(`${this.baseUrl}pokemon/`);
   var data = await response.json();
-  console.log(data);
+    
   return data.results;
 };
-PokeAPIService.prototype.getAllAbility = async function() {
-  var response = await fetch(`${this.baseUrl}ability`);
+PokeAPIService.prototype.getAllAbilities = async function() {
+  var response = await fetch(`${this.baseUrl}ability/?limit=30`);
   var data = await response.json();
-  console.log(data);
+  /*   console.log(data); */
   return data.results;
 };
 PokeAPIService.prototype.getAllNatures = async function() {
-  var response = await fetch(`${this.baseUrl}nature`);
+  var response = await fetch(`${this.baseUrl}nature/?limit=30`);
   var data = await response.json();
-  console.log(data);
+  /* console.log(data); */
   return data.results;
 };
-PokeAPIService.prototype.getPokemon = async function() {
-  var response = await fetch(`${this.baseUrl}pokemon/1`);
+PokeAPIService.prototype.getPokemon = async function(url) {
+  this.url = url;
+  var response = await fetch(`${this.detailUrl}${this.url}`);
+  var data = await response.json();
+  var responseSpecies  = await fetch(data.species.url);
+  var dataSpecies = await responseSpecies.json();
+  data.speciesNew = dataSpecies;
+ 
+  /* var generation = data.speciesNew.generation.name ;
+  console.log(generation); */
+  var sprite = data.speciesNew ;
+  console.log(data);
+  return data;
+};
+PokeAPIService.prototype.getAbility = async function(url) {
+  this.url = url;
+  var response = await fetch(`${this.detailUrl}${this.url}`);
   var data = await response.json();
   console.log(data);
-  return data.results;
+  return data;
+};
+PokeAPIService.prototype.getNature = async function(url) {
+  this.url = url;
+  var response = await fetch(`${this.detailUrl}${this.url}`);
+  var data = await response.json();
+  console.log(data);
+  return data;
 };
 
 /* PokeAPIService.prototype.getAllDetails = async function() {
@@ -36,8 +59,5 @@ PokeAPIService.prototype.getPokemon = async function() {
   console.log(data);
   return data.results;
 }; */
-
-
-
 
 var PokeAPIServiceInstance = new PokeAPIService();

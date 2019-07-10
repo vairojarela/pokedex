@@ -12,54 +12,78 @@ function CategoryPage(parentElement, url) {
 CategoryPage.prototype.generate = async function() {
   this.loading = new Loading(this.parentElement);
   this.loading.generate();
+  console.log(this.url);
   switch (this.url) {
-    case "/pokemons":
+    case "/pokemon":
       this.title = "Pokemons";
       await this.connectToAPIPokemons();
       break;
-    case "/pokemon":
-      this.title = "Pokemon";
-      await this.connectToAPIPokemon();
-      break;
     case "/ability":
       this.title = "Abilities";
-      await this.connectToAPIAbility();
+      await this.connectToAPIAbilities();
       break;
-    case "/natures":
+    case "/nature":
       this.title = "Natures";
       await this.connectToAPINatures();
       break;
     default:
-      console.log("url not found.");
+      console.log("urlnotfound404");
   }
-  /* await this.connectToAPI(); */
+
   this.elements = `<header>
                   <h1>${this.title}</h1>
                   </header>
-                  <section class="card-container">
+                  <section class="flex-container flex-main">
                   `;
   this.items.forEach(item => {
-    this.elements += `<article class="card">
-                      <a class="category-item" href="#0" url='${item.name}'>${
-      item.name
-    }</a>
-                    
-                      </article>`;
+    this.elements += `<a class="category-item" href="#0" url='${item.name}'>
+    <article class="card">
+                      <h3>${
+                        item.name
+                      }</h3>
+                      
+                      </article></a>`;
   });
-  this.elements += `</section>`;
+  
+  this.elements += `</section>
+  <button url="${this}">Next Page</button>`;
   this.render();
-  var anchors = document.querySelectorAll(".category-item");
-  console.log(anchors);
-  anchors.forEach(function(anchor) {
-    anchor.addEventListener("click", changePage);
-  });
-  function changePage(event) {
-    console.log(event);
-    var url = event.target.attributes.url.value;
-    console.log(url);
-    routerInstance.buildDOM(url);
-    console.dir(url);
+  function addListenersToCategory() {
+    var items = document.querySelectorAll(".card");
+    items.forEach(function(item) {
+      item.addEventListener("click", changePage);
+    });
   }
+  function changePage(event) {
+    var clicked = event.path[0].innerText;
+    console.log(clicked);
+    var urlRouter = targetUrl + clicked;
+    var main = document.querySelector("main");
+    routerInstance.buildDOM(urlRouter, main);
+  }
+  addListenersToCategory();
+
+  var targetUrl = this.url + "/";
+  
+  function addListenerToPagination(event) {
+    var nextPage = document.querySelector("button");
+    nextPage.addEventListener("click", nextPagination);
+    /* var url = event.target.attributes.url;
+    routerInstance.buildDOM("pokemon/" + url, layoutInstance.main);
+    console.dir(url); */
+  }
+
+  function nextPagination(){
+    var clicked = event.target;
+  /*   console.log(this.url);
+    console.log(targetUrl); */
+    var urlRouter = targetUrl ;
+    console.log(urlRouter);
+    var main = document.querySelector("main");
+    routerInstance.buildDOM(urlRouter, main); 
+  }
+
+   addListenerToPagination();
 };
 
 CategoryPage.prototype.render = function() {
@@ -67,13 +91,19 @@ CategoryPage.prototype.render = function() {
 };
 
 CategoryPage.prototype.connectToAPIPokemon = async function() {
-  this.items = await PokeAPIServiceInstance.getPokemon();
+  this.items = await PokeAPIServiceInstance.getPokemon(this.url);
+};
+CategoryPage.prototype.connectToAPIAbility = async function() {
+  this.items = await PokeAPIServiceInstance.getAbility(this.url);
+};
+CategoryPage.prototype.connectToAPINature = async function() {
+  this.items = await PokeAPIServiceInstance.getNature(this.url);
 };
 CategoryPage.prototype.connectToAPIPokemons = async function() {
   this.items = await PokeAPIServiceInstance.getAllPokemons();
 };
-CategoryPage.prototype.connectToAPIAbility = async function() {
-  this.items = await PokeAPIServiceInstance.getAllAbility();
+CategoryPage.prototype.connectToAPIAbilities = async function() {
+  this.items = await PokeAPIServiceInstance.getAllAbilities();
 };
 CategoryPage.prototype.connectToAPINatures = async function() {
   this.items = await PokeAPIServiceInstance.getAllNatures();

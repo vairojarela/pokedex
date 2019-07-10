@@ -1,6 +1,6 @@
 "use strict";
 
-function DetailsPage(parentElement, url) {
+function NaturePage(parentElement, url) {
   this.parentElement = parentElement;
   this.elements = null;
   this.items = null;
@@ -8,34 +8,33 @@ function DetailsPage(parentElement, url) {
   this.title = "";
   this.url = url;
 }
-
-DetailsPage.prototype.generate = async function() {
+NaturePage.prototype.generate = async function() {
   this.loading = new Loading(this.parentElement);
   this.loading.generate();
-  console.log(this.url);
+  await this.connectToAPIPokemon();
   this.elements = `<header>
-                  <h1>${this.title}</h1>
+                  <h1>${this.nature.name}</h1>
                   </header>
                   <section class="card-container">
                   </section>`;
 
-  this.items.forEach(item => {
+  /* this.items.forEach(item => {
     this.elements += `<article>
                       <h3>${item.name}</h3>
                     
                       <article>`;
   });
-  this.elements += `</section>`;
+  this.elements += `</section>`; */
   this.render();
 };
 
-DetailsPage.prototype.render = function() {
+NaturePage.prototype.render = function() {
   this.parentElement.innerHTML = this.elements;
 };
 
-DetailsPage.prototype.connectToAPIPokemon = async function() {
-  this.items = await PokeAPIServiceInstance.getPokemon(this.url);
-  
+NaturePage.prototype.connectToAPIPokemon = async function() {
+  this.nature = await PokeAPIServiceInstance.getNature(this.url);
+  console.log(this.nature);
 }
 
 

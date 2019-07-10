@@ -132,10 +132,11 @@ table {
 /* ---- typography ---- */
 body {
   color: #111;
-  font-family: "Courier New", Courier, monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
+  font-size: 2em;
   text-align: center;
 }
 
@@ -156,52 +157,100 @@ a {
 /* ---- layout ---- */
 
 #site-header {
-  padding: 30px 0;
+  padding: 1%;
   color: black;
-  background: darkgreen;
-  display: flex;
-  justify-content: center;
+  background: grey;
 }
 
-li {
-  display: inline-flex;
-}
 
 #site-main {
+ 
+ 
 }
 #site-footer {
   color: black;
-  background: darkgreen;
+  background: grey;
   height: 100px;
 }
 
 main {
+  
 }
 
 .card-container {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .card {
+    background: greenyellow;
+    padding: 5px;
+    width: 200px;
+    height: 150px;
+    margin-top: 10px;
+    
+    line-height: 150px;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
+  
 }
 
-header {
-  display: inline;
+.header-item{
+  display: flex;
+  flex-direction: column;
 }
 
+.sprite-img{
+  width: 150px;
+  height: 150px;
+  justify-content: center;
+}
 .container {
-  grid-template-rows: [row1-start] 25px [row1-end row2-start] 25px [row2-end];
-  grid-template-columns: auto 50px auto;
-  grid-template-areas: "header header header" "main main main",
-    "footer footer footer";
+  
+}
+.flex-container{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  flex-flow: row wrap;
+}
+
+.flex-nav {
+  justify-content: space-around;
+}
+
+.flex-main{
+  justify-content: space-around;
+}
+#nav-bar {
+  display: flex;
+  justify-content: space-between;
 }
 
 .section {
   margin-bottom: 20px;
   padding-top: 20px;
 }
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 
 @media (min-width: 768px) {
   .container {
@@ -226,17 +275,3 @@ header {
 
 /* ---- section ---- */
 
-html {
-  height: 100%;
-}
-
-ul {
-  display: inline;
-}
-li {
-  display: inline;
-}
-
-nav {
-  display: inline;
-}

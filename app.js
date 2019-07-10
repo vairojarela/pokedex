@@ -7,9 +7,9 @@ function main() {
   var footerInstance = null;
   var links = [
     { name: "Home", url: "/" },
-    { name: "Pokemons", url: "/pokemons" },
-    { name: "Ability", url: "/ability" },
-    { name: "Natures", url: "/natures" }
+    { name: "Pokemons", url: "/pokemon" },
+    { name: "Abilities", url: "/ability" },
+    { name: "Natures", url: "/nature" }
   ];
   var rootElement = document.querySelector("#root");
 
@@ -17,7 +17,6 @@ function main() {
   generateFooter();
   generateNavbar();
   addListenersToNavbar();
-  /*   addListenersToList(); */
   activateRouter();
 
   function generateLayout() {
@@ -44,10 +43,9 @@ function main() {
   }
 
   function changePage(event) {
-    console.log('is this called');
+    console.log("changePage is this called");
     var url = event.target.attributes.url.value;
     routerInstance.buildDOM(url, layoutInstance.main);
-    console.dir();
   }
 }
 

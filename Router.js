@@ -9,30 +9,29 @@ Router.prototype.buildDOM = function(url, parentElement) {
     case "/":
       this.generateLandingPage(parentElement);
       break;
-
-    case "/pokemons":
+    case "/pokemon":
       this.generateCategoryPage(parentElement, url);
       break;
-
-    case "/pokemon":
-      this.generateDetailsPage(parentElement, url);
-      break;
-
     case "/ability":
       this.generateCategoryPage(parentElement, url);
       break;
-
-    case "/natures":
+    case "/nature":
       this.generateCategoryPage(parentElement, url);
       break;
-
-   /*  case "/details":
-      this.generateDetailsPage(parentElement, url);
-      break; */
-
     default:
-      this.generateLandingPage(parentElement);
-      break;
+      var singlePokemon = url.startsWith("/pokemon");
+      var singleAbility = url.startsWith("/ability");
+      var singleNature = url.startsWith("/nature");
+      
+      if (singlePokemon) {
+        this.generatePokemonPage(parentElement, url);
+      } else if (singleAbility) {
+        this.generateAbilityPage(parentElement, url);
+      } else if (singleNature) {
+        this.generateNaturePage(parentElement, url);
+      }
+
+    /*    this.generatePokemonPage(parentElement, url); */
   }
 };
 
@@ -44,9 +43,17 @@ Router.prototype.generateCategoryPage = function(parentElement, url) {
   this.page = new CategoryPage(parentElement, url);
   this.page.generate();
 };
- Router.prototype.generateDetailsPage = function(parentElement, url) {
-  this.page = new DetailsPage(parentElement, url);
+Router.prototype.generatePokemonPage = function(parentElement, url) {
+  this.page = new PokemonPage(parentElement, url);
   this.page.generate();
-}; 
+};
+Router.prototype.generateAbilityPage = function(parentElement, url) {
+  this.page = new AbilityPage(parentElement, url);
+  this.page.generate();
+};
+Router.prototype.generateNaturePage = function(parentElement, url) {
+  this.page = new NaturePage(parentElement, url);
+  this.page.generate();
+};
 
 var routerInstance = new Router();
