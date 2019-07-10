@@ -7,7 +7,7 @@ function LandingPage(parentElement) {
 }
 
 LandingPage.prototype.generate = function() {
-  this.elements = `<header>
+  this.elements = `<header class="container">
                   <h1>Welcome to the Pokedex</h1>
                   <h2>A lot of info about Pokemons</h2>
                   </header>`;

@@ -10,7 +10,7 @@ function Navbar(parentElement, links, style) {
 Navbar.prototype.generate = function() {
   //generar dinamicamente los elementos
   this.elements = `<nav>
-  <ul>`;
+  <ul id="nav-bar">`;
   this.links.forEach(link => {
     this.elements += `<li>
                       <a href="#0" url=${link.url}>${link.name}</a>

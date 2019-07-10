@@ -4,12 +4,20 @@ function main() {
   var ENTRY_POINT = "/";
   var layoutInstance = null;
   var navbarInstance = null;
-  var links = [{ name: "Home", url: "/" }, { name: "Pokemons", url: "/pokemons" }, {name: "Ability", url: "/ability"}];
+  var footerInstance = null;
+  var links = [
+    { name: "Home", url: "/" },
+    { name: "Pokemons", url: "/pokemons" },
+    { name: "Ability", url: "/ability" },
+    { name: "Natures", url: "/natures" }
+  ];
   var rootElement = document.querySelector("#root");
 
   generateLayout();
+  generateFooter();
   generateNavbar();
   addListenersToNavbar();
+  /*   addListenersToList(); */
   activateRouter();
 
   function generateLayout() {
@@ -20,7 +28,10 @@ function main() {
     navbarInstance = new Navbar(layoutInstance.header, links);
     navbarInstance.generate();
   }
-  function generateFooter() {}
+  function generateFooter() {
+    footerInstance = new Footer(layoutInstance.footer, links);
+    footerInstance.generate();
+  }
   function activateRouter() {
     routerInstance.buildDOM(ENTRY_POINT, layoutInstance.main);
   }
@@ -33,6 +44,7 @@ function main() {
   }
 
   function changePage(event) {
+    console.log('is this called');
     var url = event.target.attributes.url.value;
     routerInstance.buildDOM(url, layoutInstance.main);
     console.dir();
