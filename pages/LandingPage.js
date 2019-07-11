@@ -3,12 +3,12 @@
 function LandingPage(parentElement) {
   this.parentElement = parentElement;
   this.elements = null;
-  this.title = `<h1 class="landing-title">Welcome to the Pokedex</h1>`;
+  this.title = ``;
 }
 
 LandingPage.prototype.generate = function() {
   this.elements = `<header class="container">
-                  ${this.title}
+  <h1 class="landing-title">Welcome to the Pokedex</h1>
                   <h2 class="landing-text">A lot of info about Pokémons</h2>
                   <!-- octocat -->
           <center>
