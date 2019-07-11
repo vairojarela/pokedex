@@ -33,6 +33,7 @@ CategoryPage.prototype.generate = async function() {
   this.elements = `<header>
                   <h1>${this.title}</h1>
                   </header>
+                  <button class="nes-btn is-primary" url="${this}">Next Page</button>
                   <section class="flex-container flex-main">
                   `;
   this.items.forEach(item => {
@@ -46,7 +47,7 @@ CategoryPage.prototype.generate = async function() {
   });
   
   this.elements += `</section>
-  <button url="${this}">Next Page</button>`;
+  `;
   this.render();
   function addListenersToCategory() {
     var items = document.querySelectorAll(".card");

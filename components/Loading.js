@@ -6,7 +6,10 @@ function Loading(parentElement) {
 }
 
 Loading.prototype.generate = function() {
-  this.elements = "<p>Gotta catch them all</p>";
+  this.elements = `<center><i class="nes-ash animate"></i>
+  <i class="nes-pokeball animate"></i>
+  <p>Loading...</p>
+  </center>`;
   this.render();
 };
 

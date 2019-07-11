@@ -8,8 +8,7 @@ function main() {
   var links = [
     { name: "Home", url: "/" },
     { name: "Pokemons", url: "/pokemon" },
-    { name: "Abilities", url: "/ability" },
-    { name: "Natures", url: "/nature" }
+    { name: "Abilities", url: "/ability" }
   ];
   var rootElement = document.querySelector("#root");
 
@@ -45,6 +44,7 @@ function main() {
   function changePage(event) {
     console.log("changePage is this called");
     var url = event.target.attributes.url.value;
+    console.log(url);
     routerInstance.buildDOM(url, layoutInstance.main);
   }
 }

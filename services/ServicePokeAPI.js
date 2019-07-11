@@ -7,21 +7,19 @@ function PokeAPIService(url) {
 }
 
 PokeAPIService.prototype.getAllPokemons = async function() {
-  var response = await fetch(`${this.baseUrl}pokemon/`);
+  var response = await fetch(`${this.baseUrl}pokemon/?limit=938`);
   var data = await response.json();
     
   return data.results;
 };
 PokeAPIService.prototype.getAllAbilities = async function() {
-  var response = await fetch(`${this.baseUrl}ability/?limit=30`);
+  var response = await fetch(`${this.baseUrl}ability/?limit=50`);
   var data = await response.json();
-  /*   console.log(data); */
   return data.results;
 };
 PokeAPIService.prototype.getAllNatures = async function() {
-  var response = await fetch(`${this.baseUrl}nature/?limit=30`);
+  var response = await fetch(`${this.baseUrl}nature/?limit=50`);
   var data = await response.json();
-  /* console.log(data); */
   return data.results;
 };
 PokeAPIService.prototype.getPokemon = async function(url) {
