@@ -6,8 +6,8 @@ function Loading(parentElement) {
 }
 
 Loading.prototype.generate = function() {
-  this.elements = `<center><i class="nes-ash animate"></i>
-  <i class="nes-pokeball animate"></i>
+  this.elements = `<center><i class="nes-ash"></i>
+  <i class="nes-pokeball"></i>
   <p>Loading...</p>
   </center>`;
   this.render();

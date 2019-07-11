@@ -5,6 +5,7 @@ function CategoryPage(parentElement, url) {
   this.elements = null;
   this.items = null;
   this.loading = null;
+
   this.title = "";
   this.url = url;
 }
@@ -33,7 +34,7 @@ CategoryPage.prototype.generate = async function() {
   this.elements = `<header>
                   <h1>${this.title}</h1>
                   </header>
-                  <button class="nes-btn is-primary" url="${this}">Next Page</button>
+                  <button class="nes-btn is-primary" url="">Next Page</button>
                   <section class="flex-container flex-main">
                   `;
   this.items.forEach(item => {

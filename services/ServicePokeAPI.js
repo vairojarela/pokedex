@@ -7,9 +7,36 @@ function PokeAPIService(url) {
 }
 
 PokeAPIService.prototype.getAllPokemons = async function() {
-  var response = await fetch(`${this.baseUrl}pokemon/?limit=938`);
+  var response = await fetch(`${this.baseUrl}pokemon/?limit=50`);
   var data = await response.json();
-    
+  var responseSpritesArr  = await data.results;
+  var spritesArr = [];
+  var fetchedArr = [];
+  var spriteUrl = responseSpritesArr.forEach(function(sprite){
+  var aSprite = sprite.url;
+  spritesArr.push(aSprite);
+});
+data.spritesArray = spritesArr;
+var spritesArr = data.spritesArray
+console.log(spritesArr);
+
+  await Promise.all(spritesArr.map(async function(url){
+    var fetched = await fetch(url);
+    var data = await fetched.json()
+    fetchedArr.push(data);
+  })); 
+  console.log(fetchedArr);
+  
+  /* responseSpritesArr.forEach(function(sprite){
+    var imgSprite = await fetch(`spriteUrl.url`);
+  }); */
+  var responseSprites  = await fetch(data.results[0].url);
+  var dataSprites = await responseSprites.json();
+  var imgSprites = await fetch(dataSprites.sprites.front_default);
+  console.log(imgSprites.url);
+  /*var dataSpecies = await responseSpecies.json();
+  data.speciesNew = dataSpecies; */
+ 
   return data.results;
 };
 PokeAPIService.prototype.getAllAbilities = async function() {

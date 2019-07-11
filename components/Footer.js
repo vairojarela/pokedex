@@ -8,21 +8,19 @@ function Footer(parentElement, style) {
 
 Footer.prototype.generate = function() {
   this.elements = `<div class="flex-container flex-footer">
-                  
+  
                   <!-- instagram -->
                   <i class="nes-icon instagram is-medium"></i>
                   <!-- github -->
-                  <i class="nes-icon github is-medium"></i>
-                  <!-- google -->
-                  <i class="nes-icon google is-medium"></i>
+                  <a href="https://github.com/vairojarela" target="__blank"><i class="nes-icon github is-medium"></i></a>
                   <!-- gmail -->
                   <i class="nes-icon gmail is-medium"></i>
                   <!-- linkedin -->
-                  <i class="nes-icon linkedin is-medium"></i>
+                  <a href="https://www.linkedin.com/in/jairo-enrique-varela-martinez/" target="__blank"><i class="nes-icon linkedin is-medium"></i></a>
                   <!-- whatsapp -->
-                  <i class="nes-icon whatsapp is-medium"></i>
+                  <a href="tel:+34695439043"><i class="nes-icon whatsapp is-medium"></i></a>
                   </div>
-                  <p class="footer-text">Made by <a href="https://vairojarela.com/">vairojarela</></p>
+                  <p class="footer-text" style="float: left; " >Made by <a href="https://vairojarela.com/">vairojarela</></p><a/>
   `;
   this.render();
 };
