@@ -12,7 +12,7 @@ LandingPage.prototype.generate = function() {
                   <h2 class="landing-text">A lot of info about Pokémons</h2>
                   <!-- octocat -->
           <center>
-                  <img id="mew" src="http://24.media.tumblr.com/22a09e751c29806f1d775438aafaa495/tumblr_mzqgw7X6Go1sycp1mo1_500.gif"/><div class="nes-balloon from-left">
+                  <img id="mew" src="https://24.media.tumblr.com/22a09e751c29806f1d775438aafaa495/tumblr_mzqgw7X6Go1sycp1mo1_500.gif"/><div class="nes-balloon from-left">
                   <p>Click me!</p>
                   </div>    </center>
                   <h3 class="landing-text">Thanks to <a href="https://pokeapi.co/" target="__blank">PokeAPI</a> and <a href="https://nostalgic-css.github.io/NES.css/" target="__blank">NES.css</a></h3>
