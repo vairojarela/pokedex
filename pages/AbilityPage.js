@@ -22,10 +22,10 @@ AbilityPage.prototype.generate = async function() {
                   `;
 
   this.ability.pokemon.map(function(element) {
-    whoCanLearnAbility.push(`<a class=".whoCanLearn" href="#0" url="${element.pokemon.url}"><card>${element.pokemon.name}</card></a>`);
-    console.log(element.pokemon.url);
+    whoCanLearnAbility.push(`<a class="capitalize" who" href="#0" url="${element.pokemon.url}"><card>${element.pokemon.name}</card></a>`);
   });
-  console.log(whoCanLearnAbility);
+  
+
   whoCanLearnAbility.forEach(function() {});
   this.elements += whoCanLearnAbility.join("");
   this.elements += `
@@ -33,26 +33,14 @@ AbilityPage.prototype.generate = async function() {
   this.render();
 };
 
+
+
 AbilityPage.prototype.render = function() {
-  this.parentElement.innerHTML = this.elements;
+  this.parentElement.innerHTML = this.elements; 
 };
 
 AbilityPage.prototype.connectToAPIPokemon = async function() {
   this.ability = await PokeAPIServiceInstance.getAbility(this.url);
   console.log(this.ability);
 };
-function addListenersToAbilities() {
-  var items = document.querySelectorAll("card");
-  console.log(items);
-  items.forEach(function(item) {
-    item.addEventListener("click", changePage);
-  });
-}
-function changePage(event) {
-  var clicked = event;
-  console.log(clicked);
- /*  var urlRouter = targetUrl + clicked;
-  var main = document.querySelector("main");
-  routerInstance.buildDOM(urlRouter, main); */
-}
-addListenersToAbilities();
+

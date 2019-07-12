@@ -6,11 +6,12 @@ function Loading(parentElement) {
 }
 
 Loading.prototype.generate = function() {
-  this.elements = `<center><div class="loading"><i class="nes-ash"></i>
+  this.elements = `<center><div class="loading"><i class="bounce-6 bounce nes-ash"></i>
   
-  <i class="nes-pokeball"></i>
-  <p>Loading...</p>
-  </div></center>`;
+  <i class=" bounce bounce-6 nes-pokeball"></i>
+  
+  </div><p>Loading...</p></center>`;
+  
   this.render();
 };
 

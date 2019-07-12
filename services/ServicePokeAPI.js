@@ -50,7 +50,7 @@ var spritesArr = data.spritesArray
   return sortedArray;
 };
 PokeAPIService.prototype.getAllAbilities = async function() {
-  var response = await fetch(`${this.baseUrl}ability/?limit=50`);
+  var response = await fetch(`${this.baseUrl}ability/?limit=300`);
   var data = await response.json();
   return data.results;
 };

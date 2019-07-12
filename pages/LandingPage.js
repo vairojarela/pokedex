@@ -11,7 +11,7 @@ LandingPage.prototype.generate = function() {
   <center></center>
   <h1 class="landing-title">Pokedex</h1>
   
-                  <h2 class="landing-text">A lot of info about...</h2>
+                  <h2 class="landing-text">A lot of data about...</h2>
           <center>
           <img class="grow" id="mew" src="http://25.media.tumblr.com/8e4aafd22dfc23592ea2bf16f4f7be87/tumblr_mze2tugzvO1qh44dro1_500.gif"/>
           

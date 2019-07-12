@@ -34,6 +34,7 @@ PokemonPage.prototype.generate = async function() {
   this.elements += `<p class="capitalize">${types.join(" / ")}</p>`;
   this.elements += `<div class="flex-container progress-bars">`;
   var colorStat = this.pokemon.speciesNew.color.name;
+
   if(colorStat==="white"){colorStat = "grey";}
   this.pokemon.stats.reverse();
   this.pokemon.stats.forEach(function(element) {

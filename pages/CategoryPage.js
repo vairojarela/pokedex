@@ -14,13 +14,68 @@ CategoryPage.prototype.generate = async function() {
   this.loading = new Loading(this.parentElement);
   this.loading.generate();
   switch (this.url) {
+
+    
     case "/pokemon":
       this.title = "Pokemons";
       await this.connectToAPIPokemons();
+      this.elements = `<header>
+                  <h1>${this.title}</h1>
+                  </header>
+                
+                  <section class="flex-container flex-main">
+                  `;
+      this.items.forEach(item => {
+        this.elements += `<a class="category-item grow" href="#0" url='${
+          item.name
+        }'>
+    <article class="card nes-container with-title is-centered" url='${
+      item.name
+    }'>
+    
+<img src="${item.image}" url='${item.name}'/>
+<h3 class="capitalize smaller" url='${item.name}'>${
+          item.name
+        }</h3>                      
+</article></a>
+`;
+      });
+      var nextPage = this.items.next;
+      this.elements += `</section>
+  `;
       break;
+
+
+
+
     case "/ability":
       this.title = "Abilities";
       await this.connectToAPIAbilities();
+      this.elements = `<header>
+                  <h1>${this.title}</h1>
+                  </header>
+                
+                  <section class="flex-container flex-main">
+                  `;
+      this.items.forEach(item => {
+        this.elements += `<a class="category-item grow" href="#0" url='${
+          item.name
+        }'>
+    <article class="card nes-container with-title is-centered" url='${
+      item.name
+    }'>
+    
+  
+                      <h3 class="capitalize smaller" url='${item.name}'>${
+          item.name
+        }</h3>
+                      
+                      </article></a>
+                      `;
+      });
+      var nextPage = this.items.next;
+      this.elements += `</section>
+  `;
       break;
     case "/nature":
       this.title = "Natures";
@@ -30,36 +85,14 @@ CategoryPage.prototype.generate = async function() {
       console.log("urlnotfound404");
   }
 
-  this.elements = `<header>
-                  <h1>${this.title}</h1>
-                  </header>
-                
-                  <section class="flex-container flex-main">
-                  `;
-  this.items.forEach(item => {
-    this.elements += `<a class="category-item grow" href="#0" url='${item.name}'>
-    <article class="card nes-container with-title is-centered" url='${item.name}'>
-    
-    <img src="${item.image}" url='${item.name}'/>
-                      <h3 class="capitalize smaller" url='${item.name}'>${item.name}</h3>
-                      
-                      </article></a>
-                      `;
-
-  });
-  var nextPage = this.items.next;
-  this.elements += `</section>
-  `;
   this.render();
   function addListenersToCategory() {
     var items = document.querySelectorAll(".card");
     items.forEach(function(item) {
       item.addEventListener("click", changePage);
     });
-  
   }
 
-  
   function changePage(event) {
     var clicked = event.target.attributes.url.value;
     var urlRouter = targetUrl + clicked;
@@ -69,8 +102,6 @@ CategoryPage.prototype.generate = async function() {
   addListenersToCategory();
 
   var targetUrl = this.url + "/";
-
-  
 };
 
 CategoryPage.prototype.render = function() {

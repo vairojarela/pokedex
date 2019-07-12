@@ -133,6 +133,7 @@ table {
 body {
   color: #111;
   font-family: Kongtext;
+
 }
 
 h1 {
@@ -256,6 +257,7 @@ a {
 }
 
 .flex-nav {
+  width: 100%;
   background-color: transparent;
   justify-content: space-evenly;
   margin: 25px 0 75px 0;
@@ -323,8 +325,7 @@ progress {
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
-  display: flex;
-  justify-content: space-evenly;
+  
 }
 
 #site-main {
@@ -381,11 +382,11 @@ left: 85%;
 }
 
 .loading{
-  height: 70vh;
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+
 }
 
 .nes-balloon{
@@ -432,4 +433,24 @@ body{cursor: url('data:image/x-icon;base64,AAACAAEAICAQAAAAAADoAgAAFgAAACgAAAAgA
   .card{
       width: 160px;
   }
+}
+
+.bounce {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+}
+
+.bounce-6 {
+  animation-name: bounce-6;
+  animation-timing-function: ease;
+}
+@keyframes bounce-6 {
+  0%   { transform: scale(1,1)      translateY(0); }
+  10%  { transform: scale(1.1,.9)   translateY(0); }
+  30%  { transform: scale(.9,1.1)   translateY(-100px); }
+  50%  { transform: scale(1.05,.95) translateY(0); }
+  57%  { transform: scale(1,1)      translateY(-7px); }
+  64%  { transform: scale(1,1)      translateY(0); }
+  100% { transform: scale(1,1)      translateY(0); }
 }
