@@ -13,7 +13,7 @@ Navbar.prototype.generate = function() {
   `;
   this.links.forEach(link => {
     this.elements += `
- <a href="#0" url=${link.url}>${link.name}</a>`;
+ <a class="nav-a" href="#0" url=${link.url}>${link.name}</a>`;
   });
   this.elements += `</nav>
   `;

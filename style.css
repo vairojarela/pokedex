@@ -169,12 +169,14 @@ a {
 }
 
 .landing-title {
+  
   font-size: 1.5em;
   text-align: center;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: .15em solid #3966ec; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  margin-top: 50px;
   letter-spacing: .15em; /* Adjust as needed */
   animation: 
     typing 2s steps(40, end),
@@ -257,10 +259,11 @@ a {
 }
 
 .flex-nav {
+
   width: 100%;
-  background-color: transparent;
+
   justify-content: space-evenly;
-  margin: 25px 0 75px 0;
+  margin: 25px 0 25px 0;
 }
 
 .flex-main {
@@ -324,6 +327,7 @@ progress {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
+  background-color: red;
   display: -webkit-flex;
   
 }
@@ -453,4 +457,8 @@ body{cursor: url('data:image/x-icon;base64,AAACAAEAICAQAAAAAADoAgAAFgAAACgAAAAgA
   57%  { transform: scale(1,1)      translateY(-7px); }
   64%  { transform: scale(1,1)      translateY(0); }
   100% { transform: scale(1,1)      translateY(0); }
+}
+
+.nav-a{
+  color: black;
 }

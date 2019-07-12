@@ -31,7 +31,7 @@ PokemonPage.prototype.generate = async function() {
   });
   types.reverse();
  
-  this.elements += `<p class="capitalize">${types.join(" / ")}</p>`;
+  this.elements += `<p class="capitalize">${types.join(" / ")}</p></section>`;
   this.elements += `<div class="flex-container progress-bars">`;
   var colorStat = this.pokemon.speciesNew.color.name;
 
