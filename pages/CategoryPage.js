@@ -113,7 +113,7 @@ CategoryPage.prototype.connectToAPIPokemon = async function() {
   /* this.sprites = await PokeAPIServiceInstance.getPokemon(
     this.results.spritesArray
   ); */
-  /*   console.log(this.sprites); */
+
 };
 CategoryPage.prototype.connectToAPIAbility = async function() {
   this.items = await PokeAPIServiceInstance.getAbility(this.url);

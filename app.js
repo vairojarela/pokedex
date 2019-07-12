@@ -42,9 +42,9 @@ function main() {
   }
 
   function changePage(event) {
-    console.log("changePage is this called");
+
     var url = event.target.attributes.url.value;
-    console.log(url);
+
     routerInstance.buildDOM(url, layoutInstance.main);
   }
 }

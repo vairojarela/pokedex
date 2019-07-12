@@ -41,6 +41,5 @@ AbilityPage.prototype.render = function() {
 
 AbilityPage.prototype.connectToAPIPokemon = async function() {
   this.ability = await PokeAPIServiceInstance.getAbility(this.url);
-  console.log(this.ability);
 };
 
