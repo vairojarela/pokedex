@@ -13,7 +13,7 @@ LandingPage.prototype.generate = function() {
   
                   <h2 class="landing-text">A lot of data about...</h2>
           <center>
-          <img class="grow" id="mew" src="http://25.media.tumblr.com/8e4aafd22dfc23592ea2bf16f4f7be87/tumblr_mze2tugzvO1qh44dro1_500.gif"/>
+          <img class="grow" id="mew" src="logo.gif"/>
           
                   <i class="nes-bulbasaur wiggle"></i>
                   <i class="nes-squirtle wiggle"></i>
