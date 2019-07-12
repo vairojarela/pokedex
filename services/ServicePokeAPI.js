@@ -7,7 +7,7 @@ function PokeAPIService(url) {
 }
 
 PokeAPIService.prototype.getAllPokemons = async function() {
-  var response = await fetch(`${this.baseUrl}pokemon/?limit=300`);
+  var response = await fetch(`${this.baseUrl}pokemon/?limit=150`);
   var data = await response.json();
   var nextPage = data.next;
   var responseSpritesArr  = await data.results;

@@ -430,6 +430,6 @@ body{cursor: url('data:image/x-icon;base64,AAACAAEAICAQAAAAAADoAgAAFgAAACgAAAAgA
 
 @media(max-width: 400px){
   .card{
-      width: 180px;
+      width: 160px;
   }
 }
