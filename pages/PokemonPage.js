@@ -14,11 +14,12 @@ PokemonPage.prototype.generate = async function() {
   await this.connectToAPIPokemon();
   var types = [];
   var stats = [];
-  console.log(this.pokemon.sprites);
   this.elements = `<header class="flex-container flex-sprites">
   
-  <img class="sprite-img" src="${this.pokemon.sprites.front_default}"/>
-  <img class="sprite-img" src="${this.pokemon.sprites.front_shiny}"/></header>
+  <img class="sprite-img grow-sprite" src="${this.pokemon.sprites.front_default}"/>
+  <img class="sprite-img grow-sprite" src="${this.pokemon.sprites.back_default}"/>
+  <img class="sprite-img grow-sprite" src="${this.pokemon.sprites.front_shiny}"/>
+  <img class="sprite-img grow-sprite" src="${this.pokemon.sprites.back_shiny}"/></header>
                   <h1 class="capitalize">${this.pokemon.name}</h1>
                   
                   
@@ -29,21 +30,43 @@ PokemonPage.prototype.generate = async function() {
     types.push(element.type.name);
   });
   types.reverse();
-  console.log(types);
-  this.elements += `<p>${types.join(" / ")}</p>`;
+ 
+  this.elements += `<p class="capitalize">${types.join(" / ")}</p>`;
   this.elements += `<div class="flex-container progress-bars">`;
-
+  var colorStat = this.pokemon.speciesNew.color.name;
+  if(colorStat==="white"){colorStat = "grey";}
+  this.pokemon.stats.reverse();
   this.pokemon.stats.forEach(function(element) {
-    /* stats.push(element.stat.name, element.base_stat); */
-    /* `<p>${element.stat.name}</p>`; */
-    stats.push(
-      ` <p class="capitalize" data-value="${element.base_stat}">${
-        element.stat.name
-      }</p><progress class="nes-progress" value="${
-        element.base_stat
-      }" max="100"></progress>`
-    );
+    if(element.base_stat<100){
+      stats.push(
+        ` <p class="capitalize" data-value="${element.base_stat}">${
+          element.stat.name
+        } <span style="color:${colorStat}">${element.base_stat}</span></p><progress class="nes-progress" value="${
+          element.base_stat
+        }" max="100"></progress>`
+      );
+    } else if (element.base_stat>100) {
+      stats.push(
+        ` <p class="capitalize" data-value="${element.base_stat}">${
+          element.stat.name
+        } <span style="color:${colorStat}">${element.base_stat}</span></p><progress class="nes-progress" value="${
+          element.base_stat
+        }" max="200"></progress>`
+      );
+    
+    } else if (element.base_stat>200) {
+      stats.push(
+        ` <p class="capitalize" data-value="${element.base_stat}">${
+          element.stat.name
+        } <span style="color:${colorStat}">${element.base_stat}</span></p><progress class="nes-progress" value="${
+          element.base_stat
+        }" max="300"></progress>`
+      );
+    }
+  
+    
   });
+
   this.elements += `${stats.join(" ")}`;
   this.elements += `</div></section>`;
   this.render();
@@ -55,4 +78,6 @@ PokemonPage.prototype.render = function() {
 
 PokemonPage.prototype.connectToAPIPokemon = async function() {
   this.pokemon = await PokeAPIServiceInstance.getPokemon(this.url);
+
 };
+

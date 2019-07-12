@@ -7,8 +7,9 @@ function PokeAPIService(url) {
 }
 
 PokeAPIService.prototype.getAllPokemons = async function() {
-  var response = await fetch(`${this.baseUrl}pokemon/?limit=50`);
+  var response = await fetch(`${this.baseUrl}pokemon/?limit=300`);
   var data = await response.json();
+  var nextPage = data.next;
   var responseSpritesArr  = await data.results;
   var spritesArr = [];
   var fetchedArr = [];
@@ -18,37 +19,42 @@ PokeAPIService.prototype.getAllPokemons = async function() {
 });
 data.spritesArray = spritesArr;
 var spritesArr = data.spritesArray
-console.log(spritesArr);
 
   await Promise.all(spritesArr.map(async function(url){
     var fetched = await fetch(url);
     var data = await fetched.json()
     fetchedArr.push(data);
   })); 
-  console.log(fetchedArr);
+
+  fetchedArr.forEach(function(pokemon){
+    pokemon.image = pokemon.sprites.front_default;
+  })
+
+  var sortedArray = fetchedArr.sort(function(a,b) {
+    return a.id - b.id;
+  })
+  sortedArray.next = data.next;
+  /*   var spritesArr = data.spritesOfCategory;
+ */
   
   /* responseSpritesArr.forEach(function(sprite){
     var imgSprite = await fetch(`spriteUrl.url`);
   }); */
-  var responseSprites  = await fetch(data.results[0].url);
+  /* var responseSprites  = await fetch(data.results[0].url);
   var dataSprites = await responseSprites.json();
   var imgSprites = await fetch(dataSprites.sprites.front_default);
-  console.log(imgSprites.url);
+  console.log(imgSprites.url); */
   /*var dataSpecies = await responseSpecies.json();
   data.speciesNew = dataSpecies; */
  
-  return data.results;
+  return sortedArray;
 };
 PokeAPIService.prototype.getAllAbilities = async function() {
   var response = await fetch(`${this.baseUrl}ability/?limit=50`);
   var data = await response.json();
   return data.results;
 };
-PokeAPIService.prototype.getAllNatures = async function() {
-  var response = await fetch(`${this.baseUrl}nature/?limit=50`);
-  var data = await response.json();
-  return data.results;
-};
+
 PokeAPIService.prototype.getPokemon = async function(url) {
   this.url = url;
   var response = await fetch(`${this.detailUrl}${this.url}`);

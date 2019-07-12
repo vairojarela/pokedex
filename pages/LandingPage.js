@@ -8,13 +8,16 @@ function LandingPage(parentElement) {
 
 LandingPage.prototype.generate = function() {
   this.elements = `<header class="container">
-  <h1 class="landing-title">Welcome to the Pokedex</h1>
-                  <h2 class="landing-text">A lot of info about Pokémons</h2>
-                  <!-- octocat -->
+  <center></center>
+  <h1 class="landing-title">Pokedex</h1>
+  
+                  <h2 class="landing-text">A lot of info about...</h2>
           <center>
-                  <img id="mew" src="https://24.media.tumblr.com/22a09e751c29806f1d775438aafaa495/tumblr_mzqgw7X6Go1sycp1mo1_500.gif"/><div class="nes-balloon from-left">
-                  <p>Click me!</p>
-                  </div>    </center>
+          <img class="grow" id="mew" src="http://25.media.tumblr.com/8e4aafd22dfc23592ea2bf16f4f7be87/tumblr_mze2tugzvO1qh44dro1_500.gif"/>
+          
+                  <i class="nes-bulbasaur wiggle"></i>
+                  <i class="nes-squirtle wiggle"></i>
+                  <i class="nes-charmander wiggle"></i></center>
                   <h3 class="landing-text">Thanks to <a href="https://pokeapi.co/" target="__blank">PokeAPI</a> and <a href="https://nostalgic-css.github.io/NES.css/" target="__blank">NES.css</a></h3>
                   <p></p>
                   </header>`;
@@ -26,8 +29,12 @@ LandingPage.prototype.render = function() {
 };
 
 setTimeout(function addListenersToMew() {
-  var mew = document.querySelector("#mew");
-  mew.addEventListener("click", changePage);
+  var mew = document.querySelectorAll("i");
+  mew.forEach(function(i) {
+    i.addEventListener("click", changePage);
+  });
+  var clickMe = document.querySelector("#mew");
+  clickMe.addEventListener("click", changePage);
 }, 300);
 
 function changePage() {

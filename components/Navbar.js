@@ -9,17 +9,13 @@ function Navbar(parentElement, links, style) {
 
 Navbar.prototype.generate = function() {
   //generar dinamicamente los elementos
-  this.elements = `<nav class="flex-container flex-nav">
+  this.elements = `<nav class="flex-container flex-nav" >
   `;
   this.links.forEach(link => {
-    this.elements += `<div>
- <a  href="#0" url=${link.url}>${link.name}</a>
-
-
-                      </div>`;
+    this.elements += `
+ <a href="#0" url=${link.url}>${link.name}</a>`;
   });
-  this.elements += `
-                    </nav>
+  this.elements += `</nav>
   `;
   this.render();
 };

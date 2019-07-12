@@ -20,7 +20,7 @@ Footer.prototype.generate = function() {
                   <!-- whatsapp -->
                   <a href="tel:+34695439043"><i class="nes-icon whatsapp is-medium"></i></a>
                   </div>
-                  <p class="footer-text" style="float: left; " >Made by <a href="https://vairojarela.com/">vairojarela</></p><a/>
+                  <p class="footer-text" style="float: left; " >By <a href="https://vairojarela.com/">vairojarela</></p><a/>
   `;
   this.render();
 };

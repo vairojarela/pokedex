@@ -5,7 +5,7 @@ function CategoryPage(parentElement, url) {
   this.elements = null;
   this.items = null;
   this.loading = null;
-
+  this.sprites = null;
   this.title = "";
   this.url = url;
 }
@@ -13,7 +13,6 @@ function CategoryPage(parentElement, url) {
 CategoryPage.prototype.generate = async function() {
   this.loading = new Loading(this.parentElement);
   this.loading.generate();
-  console.log(this.url);
   switch (this.url) {
     case "/pokemon":
       this.title = "Pokemons";
@@ -34,19 +33,21 @@ CategoryPage.prototype.generate = async function() {
   this.elements = `<header>
                   <h1>${this.title}</h1>
                   </header>
-                  <button class="nes-btn is-primary" url="">Next Page</button>
+                
                   <section class="flex-container flex-main">
                   `;
   this.items.forEach(item => {
-    this.elements += `<a class="category-item" href="#0" url='${item.name}'>
-    <article class="card">
-                      <h3>${
-                        item.name
-                      }</h3>
+    this.elements += `<a class="category-item grow" href="#0" url='${item.name}'>
+    <article class="card nes-container with-title is-centered" url='${item.name}'>
+    
+    <img src="${item.image}" url='${item.name}'/>
+                      <h3 class="capitalize smaller" url='${item.name}'>${item.name}</h3>
                       
-                      </article></a>`;
+                      </article></a>
+                      `;
+
   });
-  
+  var nextPage = this.items.next;
   this.elements += `</section>
   `;
   this.render();
@@ -55,10 +56,12 @@ CategoryPage.prototype.generate = async function() {
     items.forEach(function(item) {
       item.addEventListener("click", changePage);
     });
+  
   }
+
+  
   function changePage(event) {
-    var clicked = event.path[0].innerText;
-    console.log(clicked);
+    var clicked = event.target.attributes.url.value;
     var urlRouter = targetUrl + clicked;
     var main = document.querySelector("main");
     routerInstance.buildDOM(urlRouter, main);
@@ -66,26 +69,8 @@ CategoryPage.prototype.generate = async function() {
   addListenersToCategory();
 
   var targetUrl = this.url + "/";
+
   
-  function addListenerToPagination(event) {
-    var nextPage = document.querySelector("button");
-    nextPage.addEventListener("click", nextPagination);
-    /* var url = event.target.attributes.url;
-    routerInstance.buildDOM("pokemon/" + url, layoutInstance.main);
-    console.dir(url); */
-  }
-
-  function nextPagination(){
-    var clicked = event.target;
-  /*   console.log(this.url);
-    console.log(targetUrl); */
-    var urlRouter = targetUrl ;
-    console.log(urlRouter);
-    var main = document.querySelector("main");
-    routerInstance.buildDOM(urlRouter, main); 
-  }
-
-   addListenerToPagination();
 };
 
 CategoryPage.prototype.render = function() {
@@ -94,6 +79,10 @@ CategoryPage.prototype.render = function() {
 
 CategoryPage.prototype.connectToAPIPokemon = async function() {
   this.items = await PokeAPIServiceInstance.getPokemon(this.url);
+  /* this.sprites = await PokeAPIServiceInstance.getPokemon(
+    this.results.spritesArray
+  ); */
+  /*   console.log(this.sprites); */
 };
 CategoryPage.prototype.connectToAPIAbility = async function() {
   this.items = await PokeAPIServiceInstance.getAbility(this.url);
