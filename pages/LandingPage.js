@@ -35,7 +35,7 @@ setTimeout(function addListenersToMew() {
   });
   var clickMe = document.querySelector("#mew");
   clickMe.addEventListener("click", changePage);
-}, 300);
+}, 1000);
 
 function changePage() {
   var main = document.querySelector("main");
