@@ -1,25 +1,28 @@
 "use strict";
 
-function Navbar(parentElement, links, style) {
-  this.parentElement = parentElement;
-  this.links = links;
-  this.style = style;
-  this.elements = null;
-}
+class Navbar {
+  constructor(parentElement, links, style) {
+    this.parentElement = parentElement;
+    this.links = links;
+    this.style = style;
+    this.elements = null;
+  }
 
-Navbar.prototype.generate = function() {
-  //generar dinamicamente los elementos
-  this.elements = `<nav class="flex-container flex-nav" >
+  generate() {
+    //generar dinamicamente los elementos
+    this.elements = `<nav class="flex-container flex-nav" >
   `;
-  this.links.forEach(link => {
-    this.elements += `
+    this.links.forEach(link => {
+      this.elements += `
  <a class="nav-a" href="#0" url=${link.url}>${link.name}</a>`;
-  });
-  this.elements += `</nav>
+    });
+    this.elements += `</nav>
   `;
-  this.render();
-};
-Navbar.prototype.render = function() {
-  //add elements to DOM
-  this.parentElement.innerHTML = this.elements;
-};
+    this.render();
+  }
+
+  render() {
+    //add elements to DOM
+    this.parentElement.innerHTML = this.elements;
+  }
+}
