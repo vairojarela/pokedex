@@ -81,7 +81,7 @@ class PokeAPIService {
     return data.results;
   }
 
-  async getPokemon() {
+  async getPokemon(url) {
     this.url = url;
     let response = await fetch(`${this.detailUrl}${this.url}`);
     let data = await response.json();
@@ -92,7 +92,7 @@ class PokeAPIService {
     return data;
   }
 
-  async getAbility() {
+  async getAbility(url) {
     this.url = url;
     let response = await fetch(`${this.detailUrl}${this.url}`);
     let data = await response.json();
